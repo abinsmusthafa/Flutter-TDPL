@@ -17,4 +17,14 @@ Descriptive:(Answers)
     - Rebuild from main()
     - To do Hot Restart Click on HOT RELOAD button or TYPE R
 
+2. Yes We can. Scaffold is one kind of Widget in Fluter , Same like other other type Widget we can simple nest the Scaffold widget.
 
+3. Through "Platform Channel" we can access the Android and iOS navitve code from flutter code . we can create a channel object inside out Flutter code 
+
+    static const platform = MethodChannel('com.tata.sample');
+
+    final var result = await platform.invokeMethod('getNativeData');
+
+    When we invoke methode with methode name (getNativeData) it will go and check native METHODE HANDLER and run and return the corresponding result to         flutter side
+
+4.  
