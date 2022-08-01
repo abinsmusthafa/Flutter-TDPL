@@ -1,20 +1,16 @@
 import 'dart:convert';
-import 'package:shipyard_customer_mobile/modules/home/model/company_parameter.dart';
-import 'package:shipyard_customer_mobile/modules/search/model/SearchModel.dart';
-import 'package:shipyard_customer_mobile/services/api_service.dart';
-import 'package:shipyard_customer_mobile/utils/app_error.dart';
+import 'package:news_app/modules/home_module/model/News.dart';
+import 'package:news_app/services/api_service.dart';
+import 'package:news_app/utils/app_error.dart';
 
-class SplashScreenService extends ApiService {
-  static const alcoholCategory = "/superinventory/get/alcohol/categories/inventory/SUPER_COMPANY_1";
-  static const companyParameter = "/superorder/parameter/SUPER_COMPANY_1/get";
+class HomeScreenService extends ApiService {
+  static const getAllNews = "news?category=all";
 
-
-  Future<String> getAlcoholCategory() async {
+  Future<News> getNewsList() async {
     var headers = <String, String>{};
     headers["Content-Type"] = "application/json";
 
-    var apiPath = alcoholCategory;
-
+    var apiPath = getAllNews;
 
     Future<ParsedResponse> future = get(
       apiPath,
@@ -24,9 +20,12 @@ class SplashScreenService extends ApiService {
     return future.then((ParsedResponse res) async {
       if (res.isOk()) {
         try {
-         return res.response;
+          var response = json.decode(res.response);
+
+          News news = News.fromJson(response);
+          return news;
         } catch (e) {
-          throw AppError.internalError;
+          throw AppError.serverError;
         }
       } else {
         final Map errorResponse = json.decode(res.response);
@@ -36,33 +35,4 @@ class SplashScreenService extends ApiService {
       throw error;
     });
   }
-
-  Future<Map<String, StoreParameter>> getCompanyParameter() async {
-    var headers = <String, String>{};
-    var params = <String, String>{};
-    headers["Content-Type"] = "application/json";
-    var apiPath = companyParameter;
-    Future<ParsedResponse> future = get(
-      apiPath ,
-      params: params,
-      headers: headers,
-      needAuthentication: true,
-    );
-    return future.then((ParsedResponse res) async {
-      if (res.isOk()) {
-        try {
-          Map<String, StoreParameter>  storeParameter = storeParameterFromJson(res.response);
-          return storeParameter;
-        } catch (e) {
-          throw AppError.internalError;
-        }
-      } else {
-        final Map errorResponse = json.decode(res.response);
-        throw AppError.serverError;
-      }
-    }).catchError((Object error) {
-      throw error;
-    });
-  }
-
 }

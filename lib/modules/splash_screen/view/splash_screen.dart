@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:news_app/modules/home_module/view/home_screen.dart';
 import 'package:news_app/utils/app_color.dart';
 import 'package:news_app/utils/assets.dart';
 
@@ -14,6 +18,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   @override
   void initState() {
+    Timer(
+      const Duration(seconds: 2),
+      () => Get.offAll(
+        () => const HomeScreen(),
+      ),
+    );
     super.initState();
   }
 

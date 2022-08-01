@@ -1,12 +1,13 @@
 class News {
   News({
-      String? category, 
-      List<Data>? data, 
-      bool? success,}){
+    String? category,
+    List<Data>? data,
+    bool? success,
+  }) {
     _category = category;
     _data = data;
     _success = success;
-}
+  }
 
   News.fromJson(dynamic json) {
     _category = json['category'];
@@ -18,18 +19,26 @@ class News {
     }
     _success = json['success'];
   }
+
   String? _category;
   List<Data>? _data;
   bool? _success;
-News copyWith({  String? category,
-  List<Data>? data,
-  bool? success,
-}) => News(  category: category ?? _category,
-  data: data ?? _data,
-  success: success ?? _success,
-);
+
+  News copyWith({
+    String? category,
+    List<Data>? data,
+    bool? success,
+  }) =>
+      News(
+        category: category ?? _category,
+        data: data ?? _data,
+        success: success ?? _success,
+      );
+
   String? get category => _category;
+
   List<Data>? get data => _data;
+
   bool? get success => _success;
 
   Map<String, dynamic> toJson() {
@@ -41,20 +50,20 @@ News copyWith({  String? category,
     map['success'] = _success;
     return map;
   }
-
 }
 
 class Data {
   Data({
-      String? author, 
-      String? content, 
-      String? date, 
-      String? id, 
-      String? imageUrl, 
-      String? readMoreUrl, 
-      String? time, 
-      String? title, 
-      String? url,}){
+    String? author,
+    String? content,
+    String? date,
+    String? id,
+    String? imageUrl,
+    String? readMoreUrl,
+    String? time,
+    String? title,
+    String? url,
+  }) {
     _author = author;
     _content = content;
     _date = date;
@@ -64,7 +73,7 @@ class Data {
     _time = time;
     _title = title;
     _url = url;
-}
+  }
 
   Data.fromJson(dynamic json) {
     _author = json['author'];
@@ -77,6 +86,7 @@ class Data {
     _title = json['title'];
     _url = json['url'];
   }
+
   String? _author;
   String? _content;
   String? _date;
@@ -86,33 +96,46 @@ class Data {
   String? _time;
   String? _title;
   String? _url;
-Data copyWith({  String? author,
-  String? content,
-  String? date,
-  String? id,
-  String? imageUrl,
-  String? readMoreUrl,
-  String? time,
-  String? title,
-  String? url,
-}) => Data(  author: author ?? _author,
-  content: content ?? _content,
-  date: date ?? _date,
-  id: id ?? _id,
-  imageUrl: imageUrl ?? _imageUrl,
-  readMoreUrl: readMoreUrl ?? _readMoreUrl,
-  time: time ?? _time,
-  title: title ?? _title,
-  url: url ?? _url,
-);
+
+  Data copyWith({
+    String? author,
+    String? content,
+    String? date,
+    String? id,
+    String? imageUrl,
+    String? readMoreUrl,
+    String? time,
+    String? title,
+    String? url,
+  }) =>
+      Data(
+        author: author ?? _author,
+        content: content ?? _content,
+        date: date ?? _date,
+        id: id ?? _id,
+        imageUrl: imageUrl ?? _imageUrl,
+        readMoreUrl: readMoreUrl ?? _readMoreUrl,
+        time: time ?? _time,
+        title: title ?? _title,
+        url: url ?? _url,
+      );
+
   String? get author => _author;
+
   String? get content => _content;
+
   String? get date => _date;
+
   String? get id => _id;
+
   String? get imageUrl => _imageUrl;
+
   String? get readMoreUrl => _readMoreUrl;
+
   String? get time => _time;
+
   String? get title => _title;
+
   String? get url => _url;
 
   Map<String, dynamic> toJson() {
@@ -128,5 +151,4 @@ Data copyWith({  String? author,
     map['url'] = _url;
     return map;
   }
-
 }
