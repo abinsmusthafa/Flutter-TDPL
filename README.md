@@ -35,7 +35,9 @@ Coding: (answer Any 2)
 3. Identify the problem in the following code block and correct it.
 
     - only one issue found on the code is the methode name.
-    - Could not find any logical issue. The result will be  "1000000000! times I print the values!"
+    - Could not find any logical issue. The methode will return "1000000000! times I print the values!"
+    - If need to print the statement just use 
+      print('$counting! times I print the values!'); 
 
 Corrected answer is 
 
@@ -46,7 +48,7 @@ String longOperationMethode() {
   for (var i = 1; i <= 1000000000; i++) {
     counting = i;
   }
-  return '$counting! times I print the values!' ;
+  print('$counting! times I print the values!') ;
 }
 
 
