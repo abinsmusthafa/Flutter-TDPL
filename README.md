@@ -27,4 +27,28 @@ Descriptive:(Answers)
 
     When we invoke methode with methode name (getNativeData) it will go and check native METHODE HANDLER and run and return the corresponding result to         flutter side
 
-4.  In Mobile Applicaiton there will be N number event get from user. Example Button Click , swipe drag etc ,It need to handle all of the event with single     thread and run an event loop It will execute like First in First out until the queue complete. In app some time has the asynchronous event to load,for     example calling API / network call, Ath that time System will wait to finish the and get thet response from back end (Future data) , once get the data     the even will drop from event loop then only execute the next event
+4.  In Mobile Applicaiton there will be N number event get from user. Example Button Click , swipe drag etc ,It need to handle all of the event with         single     thread and run an event loop It will execute like First in First out until the queue complete. In app some time has the asynchronous event     to load,for     example calling API / network call, Ath that time System will wait to finish the and get thet response from back end (Future data) ,     once get the data     the even will drop from event loop then only execute the next event
+
+
+Coding: (answer Any 2)
+
+3. Identify the problem in the following code block and correct it.
+
+    - only one issue found on the code is the methode name.
+    - Could not find any logical issue. The result will be  "1000000000! times I print the values!"
+
+Corrected answer is 
+
+Change methode name from LongOperationMethode to longOperationMethode
+
+String longOperationMethode() {
+  var counting = 0;
+  for (var i = 1; i <= 1000000000; i++) {
+    counting = i;
+  }
+  return '$counting! times I print the values!' ;
+}
+
+
+
+
