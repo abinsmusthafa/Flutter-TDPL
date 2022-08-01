@@ -27,4 +27,4 @@ Descriptive:(Answers)
 
     When we invoke methode with methode name (getNativeData) it will go and check native METHODE HANDLER and run and return the corresponding result to         flutter side
 
-4.  
+4.  In Mobile Applicaiton there will be N number event get from user. Example Button Click , swipe drag etc ,It need to handle all of the event with single     thread and run an event loop It will execute like First in First out until the queue complete. In app some time has the asynchronous event to load,for     example calling API / network call, Ath that time System will wait to finish the and get thet response from back end (Future data) , once get the data     the even will drop from event loop then only execute the next event
