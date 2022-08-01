@@ -3,47 +3,50 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:news_app/modules/home_module/model/News.dart';
-import 'package:news_app/modules/home_module/view/news_view.dart';
+import 'package:news_app/modules/home_module/widgets/app_bar_home_screen.dart';
 import 'package:news_app/utils/app_color.dart';
 import 'package:news_app/widgets/custom_text.dart';
 
-class NewsContent extends StatelessWidget {
-  const NewsContent({Key? key, required this.newsData}) : super(key: key);
+class NewsView extends StatelessWidget {
+  const NewsView({Key? key, required this.newsData}) : super(key: key);
   final Data? newsData;
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: ThemeData(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-      ),
-      child: InkWell(
-          onTap: () {
-            Get.to(NewsView(newsData: newsData,));
-          },
-          child: Padding(
-            padding: EdgeInsets.all(6.r),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(6.8.r),
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 15.w),
+                  child: GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: const Icon(
+                        Icons.arrow_back_ios,
+                        color: Palette.txtHeadingColor,
+                      )),
                 ),
-                boxShadow: [
-                  BoxShadow(color: const Color(0xff000C35).withOpacity(.3), offset: const Offset(0, 6.5), blurRadius: 6),
-                ],
-                color: Palette.white,
-              ),
+                const HomeScreenAppbar(
+                  heading: "News Detail",
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.all(6.r),
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
                 child: Column(
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(6.r),
+                      borderRadius: BorderRadius.circular(5.r),
                       child: CachedNetworkImage(
                         imageUrl: newsData?.imageUrl ?? "",
                         imageBuilder: (context, imageProvider) => Container(
-                          height: 150.w,
+                          height: 250.w,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             image: DecorationImage(
@@ -59,11 +62,23 @@ class NewsContent extends StatelessWidget {
                     ),
                     CustomText(
                       text: newsData?.title ?? "",
-                      size: 15,
+                      size: 18,
                       maxLine: 2,
                       color: Palette.txtHeadingColor,
                       textAlign: TextAlign.start,
+                      weight: FontWeight.bold,
+                    ),
+                    SizedBox(
+                      height: 15.h,
+                    ),
+                    CustomText(
+                      text: newsData?.content ?? "",
+                      size: 12,
+                      maxLine: 20,
+                      color: Palette.txtHeadingColor,
+                      textAlign: TextAlign.start,
                       weight: FontWeight.w700,
+                      opacity: 0.9,
                     ),
                     SizedBox(
                       height: 15.h,
@@ -95,7 +110,9 @@ class NewsContent extends StatelessWidget {
                 ),
               ),
             ),
-          )),
+          ],
+        ),
+      ),
     );
   }
 }
